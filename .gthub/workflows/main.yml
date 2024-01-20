@@ -1,24 +1,29 @@
-name : Deploy HTML project to AWS EC2
-
+name: Deploy to EC2
 on:
-    push :
-          branches :
+    push:
+        branches:
             - main
 
-jobs :
-      deploy :
-        runs-on : ubuntu latest
+    pull_request:
+        branches:
+            - main
+    schedule: 
+        - cron: '0 0 * * *' 
+    release: 
+        types:
+            - published
+            - created
+            - prereleased
+          
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Print my name
+              run: | 
+                  echo "Kaveri"
+                  echo "GitHub"
 
-        steps :
-          - name : Print my name
-            run : |
-                echo "Pavan"
-                echo "GitHub"
-          - name : Print my current folder
-            run : |
-                pwd
-
-              
-              
-            
-                  
+            - name: Current folder
+              run: |
+                  pwd
